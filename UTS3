@@ -1,0 +1,11 @@
+curl -i  -XGET "http://localhost/latihan/utswebservice/server/serverrest3.php/?id=1"
+	output: didapatkan 1
+	
+curl -i -H "Accept:application/json" -H "Content-Type:application/json" -XPOST "http://localhost/latihan/utswebservice/server/serverrest3.php" -d '{"nama": "Budi Suseno","nim":"32323"}'
+	output: berhasil diinput Budi Suseno
+	
+curl -XDELETE "http://localhost/latihan/utswebservice/server/serverrest3.php/?id=1"
+	output: dihapus 1
+	
+curl -i -H "Accept:application/json" -H "Content-Type:application/json" -XPUT "http://localhost/latihan/utswebservice/server/serverrest3.php" -d '{"id": "x2", "nama": "termos"}'
+	output: berhasil diupdate x2 termos
