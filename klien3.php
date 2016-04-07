@@ -1,5 +1,5 @@
 <?php
-$wsdl = "http://localhost/latihan/utswebservice/server/uts.wsdl";
+$wsdl = "http://localhost:8064/uts/gb30k2mpc?wsdl";
 $client2 = new SoapClient ( $wsdl );
 
 $ws = $client2->getInfoMhs();
