@@ -5,19 +5,6 @@
 // https://trinitytuts.com/build-first-web-service-php/
 error_reporting(0);
 
-function pid ($id) {
-
-  if($id = "1") {
-  error_reporting(0);
-    $id = "Yang didapat 1";
-  } else {
-    $id = "tidak didapat";
-  }
-  return $id;
-
-}
-
-
 
 $possible_url = array("abc", "get_app","mhs","mhs1","pid","data_mhs",'id');
 
@@ -37,6 +24,18 @@ if (isset($_GET["id"]) && in_array($_GET["id"], $possible_url))
 
 
 // kamal
+
+
+if($_SERVER['REQUEST_METHOD'] == "GET"){
+
+  // TODO: gunakan authentication 
+  //curl -i  -H "Accept:application/json" -H "Content-Type:application/json" -XPOST "http://localhost/latihan/wsphpserver/api.php/" -d '{"kode": "x2", "nama": "termos","deskripsi":"barang bagus","id_kantor":"10"}'
+  //$au = $_SERVER['PHP_AUTH_USER'];
+  $json = file_get_contents('php://input');
+  $obj = json_decode($json);
+  $id=$_GET['id'];
+  $value = "Yang didapat ".$id;
+}
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
   // TODO: gunakan authentication 
@@ -44,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   //$au = $_SERVER['PHP_AUTH_USER'];
   $json = file_get_contents('php://input');
   $obj = json_decode($json);
-  $obj=$_GET['nama'];
+  $obj=$_POST['nama'];
   $value = "berhasil diinput ".$obj;
 }
 
@@ -54,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == "PUT"){
   $id= $_SERVER['HTTP_ID'];
   $id=$_GET['id'];
   $obj=$_GET['nama'];
-  $value = "berhasil diupdate ".$id." ".$obj;
+  $value = "berhasil diupdate ".$id;
 }
 
 if($_SERVER['REQUEST_METHOD'] == "DELETE"){
